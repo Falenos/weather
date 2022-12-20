@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "allowUnreachableCode": true,
+    "target": "es2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "outDir": "dist",
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "paths": {
+      "@models": ["lib/Models.ts"],
+      "@lib/*": ["lib/*"],
+      "@flows/*": ["flows/*"]
+    },
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules", "./src/types", "src/**/legacy/**"]
+}

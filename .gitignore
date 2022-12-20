@@ -1,3 +1,4 @@
 .DS_Store
 .Notes.md
-./*local-bucket
+./local-bucket
+*/node_modules/

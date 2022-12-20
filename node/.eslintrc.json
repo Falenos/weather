@@ -10,16 +10,9 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "prettier"],
-  "extends": ["plugin:@typescript-eslint/recommended", "prettier"],
+  "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true
-      }
-    ],
-    "indent": "off",
-    "linebreak-style": ["error", "unix"],
+    "max-len": ["error", { "code": 120, "ignoreStrings": true }],
     "semi": ["error", "always"],
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-empty-interface": "off"

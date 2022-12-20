@@ -1,0 +1,37 @@
+{
+  "name": "ingester",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "lint": "eslint ./src --config .eslintrc.json --ext .ts --fix",
+    "test": "test",
+    "compile": "shx rm -rf dist/ && tsc",
+    "start": "node -r ./tsconfig-paths-bootstrap.js dist/ | bunyan -o short",
+    "dev": "TZ=UTC NODE_ENV=development nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec 'ts-node -r tsconfig-paths/register src/index.ts' | bunyan -o short"
+  },
+  "author": "Yorgos Kakavas",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bunyan": "^1.8.8",
+    "@types/dotenv-flow": "^3.2.0",
+    "@types/lodash": "^4.14.191",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.1",
+    "tsconfig-paths": "^4.1.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@feathersjs/feathers": "^4.5.15",
+    "@feathersjs/socketio-client": "^4.5.15",
+    "bunyan": "^1.8.15",
+    "dotenv-flow": "^3.2.0",
+    "lodash": "^4.17.21",
+    "socket.io-client": "^2.x",
+    "ts-node": "^10.9.1"
+  }
+}
