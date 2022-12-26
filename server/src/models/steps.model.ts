@@ -1,41 +1,26 @@
-// devices-model.ts - A mongoose model
-//
-// See http://mongoosejs.com/docs/models.html
-// for more of what you can do here.
+// steps-model.ts - A mongoose model
 import { Model, Mongoose } from 'mongoose';
 import { Application } from '../declarations';
 
 export default function (app: Application): Model<any> {
-  const modelName = 'Device';
+  const modelName = 'Step';
   const mongooseClient: Mongoose = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const schema = new Schema(
     {
-      _id: { type: String, required: true },
       name: { type: String, required: true },
-      location: {
-        type: new Schema(
-          {
-            lat: Number,
-            lon: Number,
-          },
-          { _id: false }
-        ),
-        required: true,
-      },
-      lastActiveAt: { type: Date, required: true },
-      currentWeather: {
-        timestamp: Date,
-        temperature: Number,
-        humidity: Number,
-        wind_speed: Number,
-        icon: String,
-      },
+      status: { type: String, required: true },
+      errorMessage: Schema.Types.Mixed,
+      flow: { type: Schema.Types.ObjectId, ref: 'Flow', required: true },
+      meta: Schema.Types.Mixed,
     },
     {
       timestamps: true,
     }
   );
+
+  // Create indexes on all fields except "errorMessage" and "createdAt"
+  schema.index({ '$**': 1 }, { wildcardProjection: { errorMessage: 0, createdAt: 0 } });
 
   // This is necessary to avoid model compilation errors in watch mode
   // see https://mongoosejs.com/docs/api/connection.html#connection_Connection-deleteModel

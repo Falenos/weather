@@ -1,36 +1,16 @@
-// devices-model.ts - A mongoose model
-//
-// See http://mongoosejs.com/docs/models.html
-// for more of what you can do here.
+// flows-model.ts - A mongoose model
 import { Model, Mongoose } from 'mongoose';
 import { Application } from '../declarations';
 
 export default function (app: Application): Model<any> {
-  const modelName = 'Device';
+  const modelName = 'Flow';
   const mongooseClient: Mongoose = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const schema = new Schema(
     {
-      _id: { type: String, required: true },
       name: { type: String, required: true },
-      location: {
-        type: new Schema(
-          {
-            lat: Number,
-            lon: Number,
-          },
-          { _id: false }
-        ),
-        required: true,
-      },
-      lastActiveAt: { type: Date, required: true },
-      currentWeather: {
-        timestamp: Date,
-        temperature: Number,
-        humidity: Number,
-        wind_speed: Number,
-        icon: String,
-      },
+      status: { type: String, required: true },
+      errorMessage: Schema.Types.Mixed,
     },
     {
       timestamps: true,

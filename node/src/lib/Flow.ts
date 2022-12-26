@@ -5,7 +5,6 @@ import { Step } from './Step';
 export abstract class Flow {
   public abstract name: string;
   protected api!: Application;
-  public userId!: string;
 
   public id!: string;
   public status: 'pending' | 'complete' | 'error' | 'running';
@@ -42,7 +41,6 @@ export abstract class Flow {
           name: this.name,
           status: this.status,
           errorMessage: this.errorMessage,
-          user: this.userId,
         }
       );
     } else {
@@ -51,7 +49,6 @@ export abstract class Flow {
           name: this.name,
           status: this.status,
           errorMessage: this.errorMessage,
-          user: this.userId,
         })
       )._id;
     }
@@ -63,7 +60,6 @@ export abstract class Flow {
     this.status = 'running';
     this.log = bunyan.createLogger({
       name: this.name,
-      user: this.userId,
     });
     try {
       await this.updateDBRecord();

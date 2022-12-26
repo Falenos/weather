@@ -1,7 +1,7 @@
-import { Flow } from './Flow';
+import bunyan from 'bunyan';
 import { EventEmitter } from 'events';
 import { remove } from 'lodash';
-import bunyan from 'bunyan';
+import { Flow } from './Flow';
 
 export declare interface ParallelCyclicFlowsQueue {
   on(event: 'FLOW_FINISHED', listener: (flow: Flow) => void): this;
@@ -44,8 +44,8 @@ export class ParallelCyclicFlowsQueue extends EventEmitter {
       return;
     }
     if (this.unique) {
-      // Checking if there is a flow with the specified name and userID already in the list.
-      const flowExists = !!this.flowsQueue.find((f) => f.userId === flow.userId && f.name === flow.name);
+      // Checking if there is a flow with the specified name is already in the list.
+      const flowExists = !!this.flowsQueue.find((f) => f.name === flow.name);
       if (flowExists) {
         this.log.warn('Flow already exists in queue');
         return;
@@ -54,7 +54,6 @@ export class ParallelCyclicFlowsQueue extends EventEmitter {
     this.log.info(
       {
         flowName: flow.name,
-        userId: flow.userId,
       },
       'Added a flow in queue'
     );
@@ -71,7 +70,6 @@ export class ParallelCyclicFlowsQueue extends EventEmitter {
         this.log.info(
           {
             flowName: flow.name,
-            userId: flow.userId,
           },
           'Removed a flow from queue'
         );

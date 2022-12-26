@@ -1,14 +1,14 @@
-// Initializes the `devices` service on path `/devices`
+// Initializes the `flows` service on path `/flows`
 import { ServiceAddons } from '@feathersjs/feathers';
 import { Application } from '../../declarations';
-import createModel from '../../models/devices.model';
-import { Devices } from './devices.class';
-import hooks from './devices.hooks';
+import createModel from '../../models/flows.model';
+import { Flows } from './flows.class';
+import hooks from './flows.hooks';
 
 // Add this service to the service type index
 declare module '../../declarations' {
   interface ServiceTypes {
-    devices: Devices & ServiceAddons<any>;
+    flows: Flows & ServiceAddons<any>;
   }
 }
 
@@ -16,14 +16,13 @@ export default function (app: Application): void {
   const options = {
     Model: createModel(app),
     paginate: app.get('paginate'),
-    multi: true,
   };
 
   // Initialize our service with any options it requires
-  app.use('/devices', new Devices(options, app));
+  app.use('/flows', new Flows(options, app));
 
   // Get our initialized service so that we can register hooks
-  const service = app.service('devices');
+  const service = app.service('flows');
 
   service.hooks(hooks);
 }
