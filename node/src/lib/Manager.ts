@@ -1,5 +1,5 @@
 import { DeviceFetcher } from '@flows/DeviceFetcher';
-// import { WeatherFetcher } from '@flows/WeatherFetcher';
+import { WeatherFetcher } from '@flows/WeatherFetcher';
 import initApi from './Api';
 import { ParallelCyclicFlowsQueue } from './ParallelCyclicFlowsQueue';
 import { SeriesFlowsQueue } from './SeriesFlowsQueue';
@@ -14,8 +14,8 @@ export class Manager {
       this.parallelCyclicFlowsQueue.add(flow);
     });
 
-    // WeatherFetcher.bootstrap({ api }, (flow) => {
-    //   this.parallelCyclicFlowsQueue.add(flow);
-    // });
+    WeatherFetcher.bootstrap({ api }, (flow) => {
+      this.parallelCyclicFlowsQueue.add(flow);
+    });
   }
 }

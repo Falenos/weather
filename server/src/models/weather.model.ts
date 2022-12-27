@@ -1,4 +1,4 @@
-// devices-model.ts - A mongoose model
+// weather-model.ts - A mongoose model
 //
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
@@ -6,24 +6,18 @@ import { Model, Mongoose } from 'mongoose';
 import { Application } from '../declarations';
 
 export default function (app: Application): Model<any> {
-  const modelName = 'Device';
+  const modelName = 'Weather';
   const mongooseClient: Mongoose = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const schema = new Schema(
     {
-      _id: { type: String, required: true },
-      name: { type: String, required: true },
-      location: {
-        type: new Schema(
-          {
-            lat: Number,
-            lon: Number,
-          },
-          { _id: false }
-        ),
-        required: true,
-      },
-      lastActiveAt: { type: Date, required: true },
+      // deviceId: { type: Schema.Types.ObjectId, ref: 'Device' },
+      deviceId: String,
+      timestamp: Date,
+      temperature: Number,
+      humidity: Number,
+      windSpeed: Number,
+      icon: String,
     },
     {
       timestamps: true,
