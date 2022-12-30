@@ -11,9 +11,8 @@ export default function (app: Application): Model<any> {
   const { Schema } = mongooseClient;
   const schema = new Schema(
     {
-      // deviceId: { type: Schema.Types.ObjectId, ref: 'Device' },
-      deviceId: String,
-      timestamp: Date,
+      deviceId: { type: String, ref: 'Device', required: true },
+      timestamp: { type: Date, required: true },
       temperature: Number,
       humidity: Number,
       windSpeed: Number,
@@ -23,6 +22,8 @@ export default function (app: Application): Model<any> {
       timestamps: true,
     }
   );
+
+  schema.index({ deviceId: 1 });
 
   // This is necessary to avoid model compilation errors in watch mode
   // see https://mongoosejs.com/docs/api/connection.html#connection_Connection-deleteModel

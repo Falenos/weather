@@ -1,6 +1,6 @@
 import { ApiStep } from '@flows/ApiStep';
 import { StepDependencies } from '@models';
-import { differenceInMinutes, parseISO } from 'date-fns';
+import { differenceInMinutes, differenceInSeconds, parseISO } from 'date-fns';
 import { get } from 'lodash';
 
 interface Dependencies extends StepDependencies {
@@ -35,20 +35,20 @@ export class Weather extends ApiStep<Dependencies, void> {
       let runAt = get(data, '[0].meta.runAt', null);
       runAt = runAt && parseISO(runAt);
       if (!runAt) return;
-      this.log.info(`Previous flow run ${differenceInMinutes(new Date(), runAt)} minutes ago`);
+      this.log.info(`Previous flow run ${differenceInSeconds(new Date(), runAt)} seconds ago`);
       // We run this flow once every 1 minutes
       // TODO: activate skip logic
-      // if (differenceInMinutes(new Date(), runAt) <= 1) {
-      //   // should skip
-      //   this.skip = true;
-      //   this.log.info('Skipping');
-      // }
+      if (differenceInMinutes(new Date(), runAt) <= 1) {
+        // should skip
+        this.skip = true;
+        this.log.info('Skipping');
+      }
     },
   ];
 
   afterHooks = [
     async (data: any): Promise<void> => {
-      console.log(data);
+      // console.log(data);
       await this.populateWeather(data);
     },
     (): void => {
