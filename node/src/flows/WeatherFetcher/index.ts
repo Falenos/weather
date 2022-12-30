@@ -42,7 +42,6 @@ export class WeatherFetcher extends Flow {
     log.info('Listening for flow events');
 
     const onFlowDataChanged = async (flow: FlowMapParams) => {
-      console.log('WE HAVE EVENT');
       const initialCheckPass =
         // We are looking for just completed
         flow.status === 'complete' &&

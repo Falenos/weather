@@ -61,4 +61,6 @@ export default function (app: Application): void {
   //     app.channel(`emails/${data.recipientEmail}`)
   //   ];
   // });
+
+  app.service('flows').publish((data: any) => [app.channel('anonymous')]);
 }
