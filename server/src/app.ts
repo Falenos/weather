@@ -1,22 +1,23 @@
+import compress from 'compression';
+import cors from 'cors';
+import helmet from 'helmet';
 import path from 'path';
 import favicon from 'serve-favicon';
-import compress from 'compression';
-import helmet from 'helmet';
-import cors from 'cors';
 
-import feathers from '@feathersjs/feathers';
 import configuration from '@feathersjs/configuration';
 import express from '@feathersjs/express';
+import feathers from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio';
 
+import { HookContext as FeathersHookContext } from '@feathersjs/feathers';
+import swagger from 'feathers-swagger';
+import appHooks from './app.hooks';
+import channels from './channels';
 import { Application } from './declarations';
 import logger from './logger';
 import middleware from './middleware';
-import services from './services';
-import appHooks from './app.hooks';
-import channels from './channels';
-import { HookContext as FeathersHookContext } from '@feathersjs/feathers';
 import mongoose from './mongoose';
+import services from './services';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const app: Application = express(feathers());
@@ -41,6 +42,20 @@ app.use('/', express.static(app.get('public')));
 // Set up Plugins and providers
 app.configure(express.rest());
 app.configure(socketio());
+app.configure(
+  swagger({
+    docsPath: '/docs',
+    ui: swagger.swaggerUI({}),
+    specs: {
+      info: {
+        title: 'Weather API',
+        description: 'Weather API docs',
+        version: '1.0.0',
+      },
+      schemes: ['http', 'https'], // Optionally set the protocol schema used (sometimes required when host on https)
+    },
+  })
+);
 
 app.configure(mongoose);
 
