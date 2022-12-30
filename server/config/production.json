@@ -1,4 +1,4 @@
 {
-  "host": "server-app.feathersjs.com",
-  "port": "PORT"
+  "mongodb_url": "mongodb://mongo:27017",
+  "mongodb_dbName": "weather"
 }

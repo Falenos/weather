@@ -4,7 +4,6 @@
   "public": "../public/",
   "paginate": {
     "default": 10,
-    "max": 50
-  },
-  "mongodb": "mongodb://localhost:27017/weather"
+    "max": 500
+  }
 }

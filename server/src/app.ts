@@ -42,6 +42,10 @@ app.use('/', express.static(app.get('public')));
 // Set up Plugins and providers
 app.configure(express.rest());
 app.configure(socketio());
+
+app.configure(mongoose);
+
+// TODO: https://github.com/alt3/sequelize-to-json-schemas/issues/17
 app.configure(
   swagger({
     docsPath: '/docs',
@@ -56,8 +60,6 @@ app.configure(
     },
   })
 );
-
-app.configure(mongoose);
 
 // Configure other middleware (see `middleware/index.ts`)
 app.configure(middleware);
