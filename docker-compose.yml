@@ -12,8 +12,6 @@ services:
     container_name: weather-node
     restart: always
     build: ./node
-    ports:
-      - "3000:3000"
     external_links:
       - server
   mongo:

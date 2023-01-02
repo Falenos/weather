@@ -90,14 +90,8 @@ export abstract class ApiStep<U extends StepDependencies, K> extends Step<U, K> 
   // Metadata about this step
   // Any value here will be saved in the DB for this step.
   protected get meta(): any {
-    return undefined;
+    return;
   }
-
-  // Utility function that defaults data to array
-  protected normaliseToArray = (data: any = []): any => {
-    if (!Array.isArray(data)) return [data];
-    return data;
-  };
 
   async run(...args: [U]): Promise<K> {
     this.log = bunyan.createLogger({

@@ -116,15 +116,14 @@ export class WeatherFetcher extends Flow {
   protected async execSteps(): Promise<void> {
     this.log.info(`Starting...`);
 
-    // We clean is the beginning to avoid large step data in step scope
-    await this.cleanUp();
-
     const stepCommonDependencies: StepDependencies = {
       api: this.api,
       flowId: this.id,
     };
 
     await this.steps.weather().run({ ...stepCommonDependencies, deviceId: this.deviceId });
+
+    await this.cleanUp();
 
     log.info('Finished.');
     return;

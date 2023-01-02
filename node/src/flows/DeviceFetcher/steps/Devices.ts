@@ -33,7 +33,6 @@ export class Devices extends ApiStep<Dependencies, void> {
       if (!runAt) return;
       this.log.info(`Previous flow run ${differenceInMinutes(new Date(), runAt)} minutes ago`);
       // We run this flow once every 120 minutes
-      // TODO: activate skip logic
       if (differenceInMinutes(new Date(), runAt) <= 120) {
         // should skip
         this.skip = true;

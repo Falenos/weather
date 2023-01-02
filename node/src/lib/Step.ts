@@ -1,7 +1,7 @@
 import { Application } from '@feathersjs/feathers';
-import { BaseDependsTypes } from '@models';
+import { StepDependencies } from '@models';
 import bunyan from 'bunyan';
-export abstract class Step<DependsTypes extends BaseDependsTypes, ReturnsType> {
+export abstract class Step<DependsTypes extends StepDependencies, ReturnsType> {
   public abstract name: string;
   public logName?: string;
   protected flowId!: string;

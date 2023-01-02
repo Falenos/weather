@@ -37,7 +37,6 @@ export class Weather extends ApiStep<Dependencies, void> {
       if (!runAt) return;
       this.log.info(`Previous flow run ${differenceInSeconds(new Date(), runAt)} seconds ago`);
       // We run this flow once every 1 minutes
-      // TODO: activate skip logic
       if (differenceInMinutes(new Date(), runAt) <= 1) {
         // should skip
         this.skip = true;
