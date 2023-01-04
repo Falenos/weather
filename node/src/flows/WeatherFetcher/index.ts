@@ -78,7 +78,7 @@ export class WeatherFetcher extends Flow {
       });
       const { data } = response;
       total = response.total;
-      data.forEach(({ _id }: { _id: string }) => deviceIds.push(_id));
+      (data || []).forEach(({ _id }: { _id: string }) => deviceIds.push(_id));
       $skip += $limit;
     } while (total > $skip);
 

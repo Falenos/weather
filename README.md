@@ -47,9 +47,9 @@ The intended ways to run this project are:
   - The process runs `flows` that run `steps` on parallel and circular mode, possible extendability to other modes (e.g. pipeline)
   - Flows can be repeatable and delayed,
   - They can be triggered from server driven events (currently weather flow has this functionality)
-  - Flow status can be 'pending' | 'complete' | 'error' | 'running';
+  - Flow status can be `'pending' | 'complete' | 'error' | 'running'`;
   - Steps can be delayed and skipped
-  - Step status 'pending' | 'complete' | 'error' | 'running' | 'skipped'
+  - Step status `'pending' | 'complete' | 'error' | 'running' | 'skipped'`;
   - Flows and steps store their status in mongo
   - Flows clear db entries of flows and steps for old data
   - Flows and Steps implement `hooks` that mimic the feathersjs patterns. Before hooks run before main execution and after hooks get as param the output of the main execution. Hooks are chained so that the returned value of one is the param of the next.

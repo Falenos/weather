@@ -79,6 +79,7 @@ export class Weather extends ApiStep<Dependencies, void> {
     };
   }) {
     return this.api.service('weather').create({
+      device: this.dependencies.deviceId,
       deviceId: device.id,
       timestamp: new Date(device.current_weather.timestamp),
       temperature: device.current_weather.temperature,
