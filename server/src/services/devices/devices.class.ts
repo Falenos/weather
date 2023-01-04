@@ -1,3 +1,4 @@
+import { ObjectId } from 'bson';
 import { MongooseServiceOptions, Service } from 'feathers-mongoose';
 import { Application } from '../../declarations';
 
@@ -11,13 +12,15 @@ export class Devices extends Service {
     this.app = app;
   }
 
-  // async get(): Promise<any[]> {
-  //   console.log('GET');
-  //   return [];
-  // }
-
-  // async find(): Promise<any[]> {
-  //   console.log('FIND');
-  //   return [];
-  // }
+  async get(id: string): Promise<any[]> {
+    console.log('param', id);
+    return this.Model.aggregate()
+      .match({ _id: new ObjectId(id) })
+      .lookup({
+        from: 'weathers',
+        localField: '_id',
+        foreignField: 'device',
+        as: 'weather',
+      });
+  }
 }

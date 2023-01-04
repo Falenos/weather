@@ -20,28 +20,28 @@ export default function (app: Application): void {
   };
 
   const devices = new Devices(options, app);
-  devices.docs = {
-    definitions: {
-      devices: {
-        type: 'object',
-        required: ['deviceId', 'name', 'location', 'lastActiveAt'],
-        properties: {
-          text: {
-            type: 'string',
-            description: 'The message text',
-          },
-          userId: {
-            type: 'string',
-            description: 'The id of the user that sent the message',
-          },
-          deviceId: { type: 'string', description: 'The original device id' },
-          name: { type: 'string', description: 'The device name' },
-          location: { type: 'object', description: 'The device location' },
-          lastActiveAt: { type: 'string', description: 'The last active timestamp' },
-        },
-      },
-    },
-  };
+  // devices.docs = {
+  //   definitions: {
+  //     devices: {
+  //       type: 'object',
+  //       required: ['deviceId', 'name', 'location', 'lastActiveAt'],
+  //       properties: {
+  //         text: {
+  //           type: 'string',
+  //           description: 'The message text',
+  //         },
+  //         userId: {
+  //           type: 'string',
+  //           description: 'The id of the user that sent the message',
+  //         },
+  //         deviceId: { type: 'string', description: 'The original device id' },
+  //         name: { type: 'string', description: 'The device name' },
+  //         location: { type: 'object', description: 'The device location' },
+  //         lastActiveAt: { type: 'object', description: 'The last active timestamp' },
+  //       },
+  //     },
+  //   },
+  // };
 
   // Initialize our service with any options it requires
   app.use('/devices', devices);
