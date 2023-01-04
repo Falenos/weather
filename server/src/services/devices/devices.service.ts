@@ -19,8 +19,32 @@ export default function (app: Application): void {
     multi: true,
   };
 
+  const devices = new Devices(options, app);
+  devices.docs = {
+    definitions: {
+      devices: {
+        type: 'object',
+        required: ['deviceId', 'name', 'location', 'lastActiveAt'],
+        properties: {
+          text: {
+            type: 'string',
+            description: 'The message text',
+          },
+          userId: {
+            type: 'string',
+            description: 'The id of the user that sent the message',
+          },
+          deviceId: { type: 'string', description: 'The original device id' },
+          name: { type: 'string', description: 'The device name' },
+          location: { type: 'object', description: 'The device location' },
+          lastActiveAt: { type: 'string', description: 'The last active timestamp' },
+        },
+      },
+    },
+  };
+
   // Initialize our service with any options it requires
-  app.use('/devices', new Devices(options, app));
+  app.use('/devices', devices);
 
   // Get our initialized service so that we can register hooks
   const service = app.service('devices');

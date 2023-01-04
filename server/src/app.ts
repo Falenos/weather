@@ -50,6 +50,7 @@ app.configure(
   swagger({
     docsPath: '/docs',
     ui: swagger.swaggerUI({}),
+    idType: 'string',
     specs: {
       info: {
         title: 'Weather API',
