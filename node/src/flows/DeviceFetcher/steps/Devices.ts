@@ -72,7 +72,7 @@ export class Devices extends ApiStep<Dependencies, void> {
           lastActiveAt: string;
         };
       }) => ({
-        _id: device.id,
+        deviceId: device.id,
         name: device.name,
         location: device.location,
         lastActiveAt: new Date(device.attributes.lastActiveAt),

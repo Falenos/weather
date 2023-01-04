@@ -11,7 +11,12 @@ export default function (app: Application): Model<any> {
   const { Schema } = mongooseClient;
   const schema = new Schema(
     {
-      deviceId: { type: String, ref: 'Device', required: true },
+      device: {
+        type: Schema.Types.ObjectId,
+        ref: 'Device',
+        required: true,
+      },
+      deviceId: { type: String, required: true },
       timestamp: { type: Date, required: true },
       temperature: Number,
       humidity: Number,

@@ -8,7 +8,7 @@ export default function (app: Application): Model<any> {
   const { Schema } = mongooseClient;
   const schema = new Schema(
     {
-      _id: { type: String, required: true },
+      deviceId: { type: String, required: true },
       name: { type: String, required: true },
       location: {
         type: new Schema(
