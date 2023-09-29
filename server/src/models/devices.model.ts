@@ -22,19 +22,8 @@ export default function (app: Application): Model<any> {
       },
       lastActiveAt: { type: Date, required: true },
     },
-    // {
-    //   timestamps: true,
-    // },
     {
-      toJSON: {
-        transform: function (doc, ret, options) {
-          ret._links = {
-            describedBy: {
-              href: '/meta/schemas/example',
-            },
-          };
-        },
-      },
+      timestamps: true,
     }
   );
 

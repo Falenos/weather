@@ -2,6 +2,13 @@
 
 A repo with a data ingestion node process, that retrieves meteorological data from an external api and stores them to a MongoDB instance.
 
+## Live version
+
+Unfortunatelly the API that the vanilla `node` process was retrieving the data from, no longer exists.
+The server is live at [weather.kakavas.online]('https://weather.kakavas.online').
+Currently you can work with the relevant `swagger` api [docs]('https://weather.kakavas.online/docs') that can fetch a subset of the data from mongo.
+The existing infra is the `dockerised` `feathers` node server deployed on a `digital ocean droplet`, that fetches data from a mongo `atlas cluster`
+
 ## Repo structure
 > server
 
