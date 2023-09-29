@@ -1,4 +1,0 @@
-{
-  "mongodb_url": "mongodb://mongo:27017",
-  "mongodb_dbName": "weather"
-}

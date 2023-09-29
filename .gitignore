@@ -2,5 +2,5 @@
 local-bucket/
 */node_modules/
 */dist/
-*/.env
-*/production.json
+*.env
+*production.json
