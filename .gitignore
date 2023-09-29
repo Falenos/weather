@@ -1,6 +1,8 @@
+
 .DS_Store/
 local-bucket/
 */node_modules/
 */dist/
 *.env
 *production.json
+cron.sh
