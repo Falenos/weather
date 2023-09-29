@@ -27,5 +27,6 @@ export default function (app: Application): Model<any> {
   if (mongooseClient.modelNames().includes(modelName)) {
     (mongooseClient as any).deleteModel(modelName);
   }
-  return mongooseClient.model<any>(modelName, schema);
+  const model: Model<any, Record<string, unknown>> = mongooseClient.model(modelName, schema);
+  return model;
 }

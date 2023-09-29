@@ -1,5 +1,6 @@
-.DS_Store
-.Notes.md
-./local-bucket
+.DS_Store/
+local-bucket/
 */node_modules/
 */dist/
+*/.env
+*/production.json

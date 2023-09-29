@@ -6,16 +6,16 @@ services:
     build: ./server
     ports:
       - "3030:3030"
-    external_links:
-      - mongo
-  node:
-    container_name: weather-node
-    restart: always
-    build: ./node
-    external_links:
-      - server
-  mongo:
-    container_name: weather-mongo
-    image: mongo
-    ports:
-      - "27017:27017"
+    # external_links:
+    #   - mongo
+  # node:
+  #   container_name: weather-node
+  #   restart: always
+  #   build: ./node
+  #   external_links:
+  #     - server
+  # mongo:
+  #   container_name: weather-mongo
+  #   image: mongo
+  #   ports:
+  #     - "27017:27017"

@@ -8,14 +8,14 @@ import hooks from './weather.hooks';
 // Add this service to the service type index
 declare module '../../declarations' {
   interface ServiceTypes {
-    'weather': Weather & ServiceAddons<any>;
+    weather: Weather & ServiceAddons<any>;
   }
 }
 
 export default function (app: Application): void {
   const options = {
     Model: createModel(app),
-    paginate: app.get('paginate')
+    paginate: app.get('paginate'),
   };
 
   // Initialize our service with any options it requires

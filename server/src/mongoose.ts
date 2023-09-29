@@ -3,6 +3,7 @@ import { Application } from './declarations';
 import logger from './logger';
 
 export default function (app: Application): void {
+  mongoose.set('strictQuery', false);
   mongoose
     .connect(app.get('mongodb_url'), {
       dbName: app.get('mongodb_dbName'),
